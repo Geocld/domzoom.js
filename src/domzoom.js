@@ -15,12 +15,11 @@
 		originalStyles;
 
 	var options = {
-		transitionDuration: '.5s',
+		showTime: '.5s',
 		transitionTimingFunction: 'cubic-bezier(.4,0,0,1)',
 		bgColor: '#fff',
 		bgOpacity: .5,
-		maxWidth: 300,
-		maxHeight: 300
+		scale: '3'
 	}
 	
 
@@ -79,7 +78,7 @@
 	        backgroundColor: options.bgColor,
 	        cursor: prefix + 'zoom-out',
 	        transition: 'opacity ' +
-	            options.transitionDuration + ' ' +
+	            options.showTime + ' ' +
 	            options.transitionTimingFunction
 	    })
 
@@ -119,6 +118,17 @@
 
 	var api = {
 
+		config: function (opts) {
+			if (!opts) return options
+			for(var key in opts) {
+				options[key] = opts[key];
+			
+				setStyle(overlay, {
+					backgroundColor: options.bgColor
+				})
+			}
+		},
+
 		zoomIn: function (elem) {
 			if(shown || lock) return
 			target = typeof elem === 'string'
@@ -138,8 +148,8 @@
 
 			setStyle(target,{
 				position: 'relative',
-				transition: 'transform .2s linear',
-				transform: 'translate(' + dx + 'px, ' + dy + 'px) scale(3)',
+				transition: 'transform '+ options.showTime +' linear',
+				transform: 'translate(' + dx + 'px, ' + dy + 'px) scale('+options.scale+')',
 				zIndex: '99999',
 				cursor: prefix + 'zoom-out'
 			})
