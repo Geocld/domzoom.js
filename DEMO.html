@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>domzoom|zoom page's dom</title>
+	<style>
+	* {margin: 0; padding: 0;}
+	body {height:100%;}
+	.wrapper {overflow: hidden;width: 740px; margin: 10px auto;}
+	.biger {font-size:20px; font-weight: bold; display: inline-block;}
+	.box {width: 200px;height:100px;background: #EA4335;}
+	.txtBox p {
+		margin-bottom: 10px;
+	}
+	.picBox {}
+	.pic {width: 100px; height: 100px;}
+	.pic .pic1 {width: 100px; height: 100px; border-radius: 50%;}
+
+	.thumbWall {}
+	.picWall {width: 100px; height: 100px; margin-right: 10px; float: left;}
+	.picWall .pic2 {width: 100px; height: 100px;}
+
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+	<p class="zoom">这是一个可以对页面元素进行缩放的JavaScript插件，无需jQuery等其他JS库，即可实现页面DOM元素的缩放。</p>
+	<div class="txtBox">
+	<p class="zoom">文字缩放——下面文字点击可进行缩放：</p>
+	<p class="zoom">点击我</p>
+	<p class="zoom">Hello World！</p>
+	<p class="zoom" style="color: #4285F4;">缩放的文字样式会保留</p>
+	<p class="zoom"><strong>放大后点击任何一处地方均可使元素恢复原状</strong></p>
+	<p>甚至是段落中的某个<span class="biger zoom">文字</span>你也可以进行缩放</p>
+	</div>
+
+	<div class="box zoom">如果是一个div，也可以对整个div进行缩放</div>
+
+	<div class="picBox">
+		<p>也可以对图片进行缩放：</p>
+		<div class="pic zoom"><img class="pic1" src="pics/test.jpg" alt=""></div>
+		<div class="thumbWall">
+			<div class="picWall zoom"><img class="pic2" src="pics/test.jpg" alt=""></div>
+			<div class="picWall zoom"><img class="pic2" src="pics/test.jpg" alt=""></div>
+			<div class="picWall zoom"><img class="pic2" src="pics/test.jpg" alt=""></div>
+			<div class="picWall zoom"><img class="pic2" src="pics/test.jpg" alt=""></div>
+		</div>
+		
+	</div>
+
+	<script src="src/domzoom.js"></script>
+	<script>
+	domzoom.listen('.zoom')
+	domzoom.config({
+		bgColor: '#ccc',
+		scale: '2'
+	})
+	</script>
+</body>
+</html>
